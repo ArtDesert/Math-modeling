@@ -1,7 +1,5 @@
-from tkinter import *
 from tkinter import ttk
 from frames import *
-import numpy as np
 from chart import chart
 
 

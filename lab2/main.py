@@ -4,6 +4,7 @@ from matplotlib.animation import FuncAnimation
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 import tkinter as tk
 from tkinter import *
+import math
 
 
 def get_arr(left, n, h):
@@ -46,7 +47,7 @@ def get_solutions():
     for k in range(1, K + 1):
         for i in range(n):
             _sum = sum([float(B[i][j].get()) * solutions[i][k - 1] * solutions[j][k - 1] for j in range(n)]);
-            solutions[i][k] = solutions[i][k - 1] + h_t * (float(A[i].get()) * (1 - float(C[i].get())) * solutions[i][k - 1] + _sum)
+            solutions[i][k] = solutions[i][k - 1] + h_t * (float(A[i].get()) * (1 - float(C[i].get()) * math.exp(- i / T)) * solutions[i][k - 1] + _sum)
     return solutions
 
 
@@ -94,7 +95,7 @@ win.title('Модель взаимодействия популяций')
 win.geometry('1000x600')
 
 n = 3
-T = 1000
+T = 3000
 K = 10 * T
 N = [0.0] * n
 A = [0.0] * n
