@@ -27,9 +27,11 @@ def draw():
         plt.plot(t_arr, N_[i], label=f"N_{i + 1}")
         for j in range(K + 1):
             sum_arr[j] += N_[i][j]
-    delta = abs(max(sum_arr) - min(sum_arr))
-    print(delta)
-    #plt.plot(t_arr, sum_arr, label="Общее число особей")
+    diff = abs(max(sum_arr) - min(sum_arr))
+    delta = abs(max(sum_arr) / min(sum_arr))
+    print(f'diff = {diff}')
+    print(f'delta = {delta}')
+    plt.plot(t_arr, sum_arr, label="Общее число особей")
     plt.legend()
     plt.show()
 
@@ -94,8 +96,8 @@ win = Tk()
 win.title('Модель взаимодействия популяций')
 win.geometry('1000x600')
 
-n = 3
-T = 3000
+n = 2
+T = 1000
 K = 10 * T
 N = [0.0] * n
 A = [0.0] * n
